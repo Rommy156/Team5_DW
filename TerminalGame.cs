@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace MohawkTerminalGame
 {
@@ -13,25 +14,33 @@ namespace MohawkTerminalGame
         /// Run once before Execute begins
         public void Setup()
         {
+
             // Program configuration
             Program.TerminalExecuteMode = TerminalExecuteMode.ExecuteLoop;
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
 
+            Terminal.SetTitle("Detective");
+           
             // Hide raylib console output
-            Terminal.ForegroundColor = ConsoleColor.Black;
+            Terminal.BackgroundColor = ConsoleColor.Black;
             Terminal.CursorVisible = false;
             Audio.Initialize();
             // Load audio files. This must happen AFTER initializing audio.
             // If you are so inclined, you can move Audio.Initialize() into Program beside Input.InitInputThread()
-            sfx1 = Audio.LoadSound("../../../../assets/audio/sound.wav");
-            sfx2 = Audio.LoadSound("../../../../assets/audio/target.ogg");
-            sfx3 = Audio.LoadSound("../../../../assets/audio/boom.wav");
-            bgm = Audio.LoadMusic("../../../../assets/audio/country.mp3");
+            sfx1 = Audio.LoadSound("assets/audio/sound.wav");
+            sfx2 = Audio.LoadSound("assets/audio/target.ogg");
+            sfx3 = Audio.LoadSound("assets/audio/boom.wav");
+            bgm = Audio.LoadMusic("assets/audio/country.mp3");
             bgm.Looping = true;
+            Console.Clear();
+
             // Move curosr to overwrite previously drawn (black) text
             Terminal.SetCursorPosition(0, 0);
             Terminal.ResetColor();
             Terminal.CursorVisible = true;
+
+            Console.WriteLine("Current Directory: " + Environment.CurrentDirectory);
+
         }
 
         // Execute() runs based on Program.TerminalExecuteMode (assign to it in Setup).
@@ -70,5 +79,6 @@ namespace MohawkTerminalGame
             }
             Terminal.WriteLine();
         }
+        
     }
 }
