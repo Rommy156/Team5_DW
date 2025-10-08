@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 
@@ -12,6 +14,10 @@ namespace MohawkTerminalGame
         Sound sfx2;
         Sound sfx3;
         Sound clickSfx;
+
+        HashSet<string> visited = new HashSet<string>();
+        private bool IntroPlayed = false;
+        private bool gameOver = false;
         /// Run once before Execute begins
         public void Setup()
         {
@@ -33,7 +39,7 @@ namespace MohawkTerminalGame
             Terminal.UseRoboType = true; // slow typing
             Terminal.WriteWithWordBreaks = true; // donbreak around wors, don't cut them off
             Terminal.WordBreakCharacter = ' '; // break on spaces
-
+            //play music and sfx
             bgm = Audio.LoadMusic("assets/audio/country.mp3");
             bgm.Looping = true;
             Audio.Play(bgm);
@@ -53,14 +59,9 @@ namespace MohawkTerminalGame
         //               Code must finish within the alloted time frame for this to work well.
         public void Execute()
         {
-            if (!IntroPlayed)
-            {
-                PlayIntro();
-                IntroPlayed = true;
-            }
-            else
-            { ViewMainMenu(); }
-
+            PlayIntro();
+            FirstLocation();
+            
         }
         private void PlayIntro()
 
@@ -73,16 +74,21 @@ namespace MohawkTerminalGame
             Terminal.ReadLine();
             Audio.Play(clickSfx);
             Terminal.Clear();
+            //-----------ascii art
             //Page 2
             Terminal.RoboTypeIntervalMilliseconds = 40;
             Terminal.WriteLine("The victim, a young man named Casey Wentz, was murdered last night at a local general store, Large Grizzly General Store.");
             Terminal.WriteLine("Reports say the kid was just buying some snacks after a long shift…");
             Terminal.WriteLine("");
-            Terminal.Beep();
             Terminal.ReadLine();
             Terminal.Clear();
+            //----------ascii art
             //Page 3 
             Terminal.WriteLine("Casey’s body was brought to the morgue early this morning, from what the coroner has said, the death was pretty grizzley…");
+            Terminal.ReadLine();
+            Terminal.Clear();
+            //-------ascii art
+
             //Page 4
             Terminal.WriteLine("The attacker disappeared right after the attack, I need to find the perpetrator… and fast…");
             Terminal.WriteLine("");
@@ -90,50 +96,49 @@ namespace MohawkTerminalGame
             Terminal.WriteLine("");
             Terminal.WriteLine("But… something about this all feels off…");
             Terminal.WriteLine("");
-            Terminal.WriteLine("I have _ days to solve this case, and so many places to go…");
+            Terminal.WriteLine("I have x days to solve this case, and so many places to go…");
             Terminal.WriteLine("");
             Terminal.WriteLine("I gotta be smart on where to go… Can’t let this guy get away…");
             Terminal.ReadLine();
+            //--------ascii art
         }
-        private void ViewMainMenu()
+        private void FirstLocation()
         {
             //new game menu
             Terminal.Clear();
             Terminal.RoboTypeIntervalMilliseconds = 30;
-            Terminal.WriteLine("You have x days to solve the case.");
+            //Page 4.5
             Terminal.WriteLine("");
             Terminal.WriteLine("Where to go?");
-            Terminal.WriteLine("Hospital or Morgue or General Store");
+            Terminal.WriteLine("Hospital or Morgue");
             Terminal.WriteLine("");
             Terminal.WriteLine("[H] Hospital");
             Terminal.WriteLine("[M] for Morgue");
-            Terminal.WriteLine("[G] for General Store");
-            Terminal.WriteLine("[B] for Bank");
-            Terminal.WriteLine("[S] for School");
             Terminal.ReadLine();
+
             string answer = Terminal.ReadAndClearLine();
-            if (answer.ToLower().Equals("h") || answer.ToUpper().Equals("H")) 
+
+            if (answer.Equals("h", StringComparison.OrdinalIgnoreCase))
             {
                 VisitHospital();
             }
-            if (answer.ToLower().Equals("m") || answer.ToUpper().Equals("M"))
+            else if (answer.Equals("m", StringComparison.OrdinalIgnoreCase))
             {
                 VisitMorgue();
             }
-            if (answer.ToLower().Equals("g") || answer.ToUpper().Equals("G"))
+            else
             {
-                VisitGeneralStore();
-            }
-            if (answer.ToLower().Equals("b") || answer.ToUpper().Equals("B"))
-            {
-                VisitBank();
-            }
-            if (answer.ToLower().Equals("s") || answer.ToUpper().Equals("S"))
-            {
-                VisitSchool();
-                
+                Terminal.WriteLine("Invalid choice.");
+                Terminal.ReadLine();
+                FirstLocation();
             }
         }
+
+        private void ChooseNextLocation()
+        {
+
+        }
+
 
         private void VisitHospital()
         {
@@ -175,6 +180,38 @@ namespace MohawkTerminalGame
             Terminal.WriteLine("");
             Terminal.WriteLine("");
         }
-        private bool IntroPlayed = false;
+        private void VisitCourtHouse()
+        {
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+        }
+        private void VisitBar()
+        {
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+        }
+        private void VisitManor()
+        {
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+        }
+        private void VisitOffice()
+        {
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+        }
+        
     }
 }
