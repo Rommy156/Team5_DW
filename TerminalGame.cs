@@ -10,9 +10,6 @@ namespace MohawkTerminalGame
     {
         // Place your variables here
         Music bgm;
-        Sound sfx1;
-        Sound sfx2;
-        Sound sfx3;
         Sound clickSfx;
 
         HashSet<string> visited = new HashSet<string>();
@@ -29,7 +26,7 @@ namespace MohawkTerminalGame
             Terminal.SetTitle("Detective");
            
             // Hide raylib console output
-            Terminal.BackgroundColor = ConsoleColor.Black;
+            Terminal.BackgroundColor = ConsoleColor.Magenta;
             Terminal.CursorVisible = false;
 
             Audio.Initialize();
@@ -45,6 +42,9 @@ namespace MohawkTerminalGame
             Audio.Play(bgm);
             clickSfx = Audio.LoadSound("assets/audio/click.wav");
             Terminal.Clear();
+
+            
+
 
             // Move curosr to overwrite previously drawn (black) text
             Terminal.SetCursorPosition(0, 0);
@@ -68,13 +68,19 @@ namespace MohawkTerminalGame
         {
             Terminal.Clear();
             //Page 1
+            //-----------ascii art--------------------
+            Terminal.RoboTypeIntervalMilliseconds = 0;
+            string detectiveAscii = File.ReadAllText("assets/text/detective-art.txt");
+            Terminal.BackgroundColor = ConsoleColor.DarkYellow;
+            Terminal.WriteLine(detectiveAscii);
+            Terminal.WriteLine();
             Terminal.WriteLine("My name is Miles Lambert, a private eye within Cross City.");
             Terminal.WriteLine("Recently I have been hired to solve a murder.");
             Terminal.WriteLine("");
             Terminal.ReadLine();
             Audio.Play(clickSfx);
             Terminal.Clear();
-            //-----------ascii art
+            
             //Page 2
             Terminal.RoboTypeIntervalMilliseconds = 40;
             Terminal.WriteLine("The victim, a young man named Casey Wentz, was murdered last night at a local general store, Large Grizzly General Store.");
@@ -82,12 +88,12 @@ namespace MohawkTerminalGame
             Terminal.WriteLine("");
             Terminal.ReadLine();
             Terminal.Clear();
-            //----------ascii art
+            //----------ascii art----------------------
             //Page 3 
             Terminal.WriteLine("Casey’s body was brought to the morgue early this morning, from what the coroner has said, the death was pretty grizzley…");
             Terminal.ReadLine();
             Terminal.Clear();
-            //-------ascii art
+            //-------ascii art----------------------
 
             //Page 4
             Terminal.WriteLine("The attacker disappeared right after the attack, I need to find the perpetrator… and fast…");
@@ -96,11 +102,11 @@ namespace MohawkTerminalGame
             Terminal.WriteLine("");
             Terminal.WriteLine("But… something about this all feels off…");
             Terminal.WriteLine("");
-            Terminal.WriteLine("I have x days to solve this case, and so many places to go…");
+            Terminal.WriteLine("I have 55 days to solve this case, and so many places to go…");
             Terminal.WriteLine("");
             Terminal.WriteLine("I gotta be smart on where to go… Can’t let this guy get away…");
             Terminal.ReadLine();
-            //--------ascii art
+            //--------ascii art---------------
         }
         private void FirstLocation()
         {
@@ -136,6 +142,7 @@ namespace MohawkTerminalGame
 
         private void ChooseNextLocation()
         {
+
 
         }
 
