@@ -18,29 +18,30 @@ namespace MohawkTerminalGame
             // Program configuration
             Program.TerminalExecuteMode = TerminalExecuteMode.ExecuteLoop;
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
-
+            //set title
             Terminal.SetTitle("Detective");
            
             // Hide raylib console output
             Terminal.BackgroundColor = ConsoleColor.Black;
             Terminal.CursorVisible = false;
+
             Audio.Initialize();
             // Load audio files. This must happen AFTER initializing audio.
             // If you are so inclined, you can move Audio.Initialize() into Program beside Input.InitInputThread()
-            sfx1 = Audio.LoadSound("assets/audio/sound.wav");
-            sfx2 = Audio.LoadSound("assets/audio/target.ogg");
-            sfx3 = Audio.LoadSound("assets/audio/boom.wav");
+            Terminal.RoboTypeIntervalMilliseconds = 50; // robo type interval 50 milliseconds
+            Terminal.UseRoboType = true; // slow typing
+            Terminal.WriteWithWordBreaks = true; // donbreak around wors, don't cut them off
+            Terminal.WordBreakCharacter = ' '; // break on spaces
+
             bgm = Audio.LoadMusic("assets/audio/country.mp3");
             bgm.Looping = true;
-            Console.Clear();
+            Audio.Play(bgm);
+            Terminal.Clear();
 
             // Move curosr to overwrite previously drawn (black) text
             Terminal.SetCursorPosition(0, 0);
             Terminal.ResetColor();
             Terminal.CursorVisible = true;
-
-            Console.WriteLine("Current Directory: " + Environment.CurrentDirectory);
-
         }
 
         // Execute() runs based on Program.TerminalExecuteMode (assign to it in Setup).
@@ -50,34 +51,18 @@ namespace MohawkTerminalGame
         //               Code must finish within the alloted time frame for this to work well.
         public void Execute()
         {
-            Terminal.WriteLine("Select a sound file to play.");
-            Terminal.WriteLine("SOUND, TARGET, BOOM, BGM");
-            string audioToPlay = Terminal.ReadLine();
-            if (audioToPlay.ToUpper().Equals("SOUND"))
-            {
-                Audio.Play(sfx1);
-            }
-            else if (audioToPlay.ToUpper().Equals("TARGET"))
-            {
-                Audio.Play(sfx2);
-            }
-            else if (audioToPlay.ToUpper().Equals("BOOM"))
-            {
-                Audio.Play(sfx3);
-            }
-            else if (audioToPlay.ToUpper().Equals("BGM"))
-            {
-                // Toggle BGM
-                if (!Audio.IsPlaying(bgm))
-                    Audio.Play(bgm);
-                else
-                    Audio.Stop(bgm);
-            }
-            else
-            {
-                Terminal.WriteLine($"{audioToPlay.ToUpper()} is not an option.");
-            }
-            Terminal.WriteLine();
+            //Page 1
+            Terminal.WriteLine("My name is Miles Lambert, a private eye within Cross City.");
+            Terminal.WriteLine("Recently I have been hired to solve a murder.");
+            Terminal.WriteLine("");
+            Terminal.ReadLine();
+            Terminal.Beep();
+            //Page 2
+            Terminal.RoboTypeIntervalMilliseconds = 40;
+            Terminal.WriteLine("The victim, a young man named Casey Wentz, was murdered last night at a local general store, Large Grizzly General Store. \r\n");
+            Terminal.WriteLine("Reports say the kid was just buying some snacks after a long shift…");
+            Terminal.WriteLine("");
+            Terminal.ReadLine();
         }
         
     }
