@@ -57,13 +57,52 @@ namespace MohawkTerminalGame
             Terminal.WriteLine("");
             Terminal.ReadLine();
             Terminal.Beep();
+            Terminal.Clear();
             //Page 2
             Terminal.RoboTypeIntervalMilliseconds = 40;
-            Terminal.WriteLine("The victim, a young man named Casey Wentz, was murdered last night at a local general store, Large Grizzly General Store. \r\n");
+            Terminal.WriteLine("The victim, a young man named Casey Wentz, was murdered last night at a local general store, Large Grizzly General Store.");
             Terminal.WriteLine("Reports say the kid was just buying some snacks after a long shift…");
             Terminal.WriteLine("");
+            Terminal.Beep();
             Terminal.ReadLine();
+            Terminal.Clear();
+            //Page 3 
+            Terminal.WriteLine("Casey’s body was brought to the morgue early this morning, from what the coroner has said, the death was pretty grizzley…");
+            //Page 4
+            Terminal.WriteLine("The attacker disappeared right after the attack, I need to find the perpetrator… and fast…");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("The longer he’s out there the more dangerous the streets grow…");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("But… something about this all feels off…");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("I have _ days to solve this case, and so many places to go…");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("I gotta be smart on where to go… Can’t let this guy get away…");
+            Terminal.ReadLine();
+            Terminal.WriteLine("Where to go?");
+            Terminal.WriteLine("Hospital or Morgue or General Store");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("Type H for Hospital or M for Morgue or G");
+            Terminal.ReadLine();
+            string answer = Terminal.ReadAndClearLine();
+            if (answer.ToLower().Equals("h") || answer.ToUpper().Equals("h")) 
+            {
+                
+            }
+            if (answer.ToLower().Equals("m") || answer.ToUpper().Equals("M"))
+            {
+
+            }
+            if (answer.ToLower().Equals("g") || answer.ToUpper().Equals("G"))
+            {
+
+            }
+
+
+
+
+
         }
-        
+
     }
 }
