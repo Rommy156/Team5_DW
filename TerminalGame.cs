@@ -142,11 +142,14 @@ namespace MohawkTerminalGame
 
         private void VisitHospital()
         {
-            Terminal.WriteLine("");
-            Terminal.WriteLine("");
-            Terminal.WriteLine("");
-            Terminal.WriteLine("");
-            Terminal.WriteLine("");
+            Terminal.WriteLine("Silverstein Hospital… That's where Casey Wentz was brought, it’s a shame the kid died the way he did…");
+            Terminal.WriteLine("The hospital halls are cold and detached, yet perhaps coming here wasn’t such a bad idea…");
+            Terminal.WriteLine("Ran into the kid’s family at the hospital… The mom, she was pretty frazzled… but she mentioned something interesting, a recent fight... ");
+            Terminal.WriteLine("Apparently the kid had been pretty on edge… said some pretty venomous things to his own mother…");
+            Terminal.WriteLine("The fight was apparently pretty awful, Mom tried asking him what was going on but just started screaming 'bout owning money… this led mom to start screamin’ too…");
+            Terminal.WriteLine("Families fight for sure… sometimes it gets ugly… but is it enough to justify murder…?");
+            Terminal.WriteLine("I’m not sure…");
+            Terminal.WriteLine("Options to go:");
         }
         private void VisitMorgue()
         {
