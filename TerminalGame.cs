@@ -96,7 +96,7 @@ namespace MohawkTerminalGame
             Terminal.WriteLine("");
             Terminal.WriteLine("But… something about this all feels off…");
             Terminal.WriteLine("");
-            Terminal.WriteLine("I have x days to solve this case, and so many places to go…");
+            Terminal.WriteLine("I have 5 days to solve this case, and so many places to go…");
             Terminal.WriteLine("");
             Terminal.WriteLine("I gotta be smart on where to go… Can’t let this guy get away…");
             Terminal.ReadLine();
@@ -110,10 +110,10 @@ namespace MohawkTerminalGame
             //Page 4.5
             Terminal.WriteLine("");
             Terminal.WriteLine("Where to go?");
-            Terminal.WriteLine("Hospital or Morgue");
+            Terminal.WriteLine("The Store or Morgue");
             Terminal.WriteLine("");
-            Terminal.WriteLine("[H] Hospital");
-            Terminal.WriteLine("[M] for Morgue");
+            Terminal.WriteLine("[1] for Store");
+            Terminal.WriteLine("[3] for Morgue");
             Terminal.ReadLine();
 
             string answer = Terminal.ReadAndClearLine();
@@ -160,7 +160,7 @@ namespace MohawkTerminalGame
         {
             //Page 1 (Morgue)
             Terminal.WriteLine("Walking into the morgue the stench of death hit me, not literally, but… in the way that hangs over your head for the days to come, how these people do this is beyond me…");
-            Terminal.WriteLine("Regardless, it’s part of the job, and there is a crime to be solved… and a coroner to speak");
+            Terminal.WriteLine("Regardless, it’s part of the job, and there is a crime to be solved… and a coroner to speak with...");
             
             //Page 2 (Smiling Coroner)
             Terminal.WriteLine("Meeting up with the coroner was like any other meeting, the old man looks far past his days, yet keeps an eerie demeanour… more so today than others…");
@@ -233,8 +233,8 @@ namespace MohawkTerminalGame
         {
             //Page 1 (The Bar)
             Terminal.WriteLine("Coheed’s, a dingy lil bar… this is where Casey worked… Walkin’ in things instantly felt off, people like me aren’t typically welcomed here…");
-            Terminal.WriteLine("");
-            Terminal.WriteLine("");
+            Terminal.WriteLine("Regardless, I got a job to do… ");
+            Terminal.WriteLine("And the kid’s old coworkers could be a great place for info.");
 
             //Page 2 (Bartender)
             Terminal.WriteLine("Askin’ the bartender ‘bout Casey seemed to sour his face. I asked him more ‘bout the kid and he seemed to not have much good things to say ‘bout him…");
