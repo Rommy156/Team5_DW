@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 using TerminalGameWithAudio;
 
@@ -78,6 +81,7 @@ namespace MohawkTerminalGame
             intro = new Location
             {
                 Name = "Detective’s Office",
+                asciiArt = File.ReadAllText("assets/text/Detective at Desk.txt"),
                 Description = "It’s another long night in Cross City. Time to get to work...",
                 Dialogue = @"",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
@@ -91,7 +95,7 @@ namespace MohawkTerminalGame
             hospital = new Location
             {
                 Name = "Hospital",
-                asciiArt = File.ReadAllText("assets/text/hospital.txt"),
+                asciiArt = File.ReadAllText("assets/text/Hospital.txt"),
                 Description = "Silverstein Hospital",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Silverstein Hospital… That's where Casey Wentz was brought, it’s a shame the kid died the way he did… 
@@ -120,6 +124,7 @@ I’m not sure…
             morgue = new Location
             {
                 Name = "Morgue",
+                asciiArt = File.ReadAllText("assets/text/Morgue.txt"),
                 Description = "City Morgue",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Walking into the morgue the stench of death hit me, not literally, 
@@ -146,6 +151,7 @@ Fan of his job… or something more malicious…?"
             generalStore = new Location
             {
                 Name = "General Store",
+                asciiArt = File.ReadAllText("assets/text/Corner Store.txt"),
                 Description = "Large Grizzly General Store",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Walking into that corner store was surprisingly rougher than anyone would have suspected,despite the effort, and the cleaning it's clear that something horrible happened here…
@@ -166,6 +172,7 @@ The owner said he thinks he saw him eyeing Casey’s wallet, but the old man als
             courtHouse = new Location
             {
                 Name = "Court House",
+                asciiArt = File.ReadAllText("assets/text/Courthouse.txt"),
                 Description = "City Court House",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Walking into that corner store was surprisingly rougher than anyone would have suspected,despite the effort, and the cleaning it's clear that something horrible happened here…
@@ -186,6 +193,7 @@ The owner said he thinks he saw him eyeing Casey’s wallet, but the old man als
             bank = new Location
             {
                 Name = "Bank",
+                asciiArt = File.ReadAllText("assets/text/Bank.txt"),
                 Description = "First National Bank",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Walking into the bank with such reasons as I did felt awful… but I was given a tip off that Casey had drawn out a large sum of money…
@@ -203,7 +211,7 @@ Angry Coworker? And owed money… seems like a recipe for disaster… but withou
             Terminal.Clear();
             //-----------ascii art--------------------[School]
             Terminal.RoboTypeIntervalMilliseconds = 0;
-            string schoolAscii = File.ReadAllText("assets/text/college.txt");
+            string schoolAscii = File.ReadAllText("assets/text/College.txt");
             Terminal.WriteLine(schoolAscii);
             Terminal.WriteLine();
 
@@ -211,6 +219,7 @@ Angry Coworker? And owed money… seems like a recipe for disaster… but withou
             school = new Location
             {
                 Name = "School",
+                asciiArt = File.ReadAllText("assets/text/College.txt"),
                 Description = "City College",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Figured heading to Casey’s college could have proved some use… I figured, could find a professor, maybe a classmate. Someone who knew the kid…
@@ -236,6 +245,7 @@ Not sure if that is worth killin’ a person over though…
             bar = new Location
             {
                 Name = "Seedy Bar",
+                asciiArt = File.ReadAllText("assets/text/Bar.txt"),
                 Description = "Seedy Bar",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @" Coheed’s, a dingy lil bar… this is where Casey worked… Walkin’ in things instantly felt off, people like me aren’t typically welcomed here…
@@ -257,6 +267,7 @@ Regardless… He said a lot of things that raised some suspicions…
             manor = new Location
             {
                 Name = "Rich Manor",
+                asciiArt = File.ReadAllText("assets/text/Manor.txt"),
                 Description = "Rich Manor",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"My intel pointed me to a manor in the more well off part of town. Upon arriving things seemed normal, no issues… but I needed to talk to the owner, just to be sure…
@@ -283,6 +294,7 @@ She was mad sure… but apparently he was real frustrated from work, something a
             office = new Location
             {
                 Name = "Detective Office",
+                asciiArt = File.ReadAllText("assets/text/Detective at Desk.txt"),
                 Description = "Detective Office",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Back at my office… There’s no more time…
@@ -373,23 +385,26 @@ Who murdered Casey…?
 
             //Page 1 
             //-----------ascii art--------------------
-            Terminal.RoboTypeIntervalMilliseconds = 0;
+            Terminal.UseRoboType = false;
             string detectiveAscii = File.ReadAllText("assets/text/detective.txt");
             Terminal.WriteLine(detectiveAscii);
             Terminal.WriteLine();
-            Terminal.RoboTypeIntervalMilliseconds = 30;
+            Terminal.UseRoboType = true;
+            Terminal.RoboTypeIntervalMilliseconds = 40;
             Terminal.WriteLine("My name is Miles Lambert, a private eye within Cross City.");
             Terminal.WriteLine("Recently I have been hired to solve a murder.");
-            Terminal.WriteLine("");
+            Terminal.WriteLine("Press [Enter] to continue");
+            Terminal.WriteLine();
             Terminal.ReadLine();
             Audio.Play(clickSfx);
             Terminal.Clear();
 
             //Page 2
-            Terminal.RoboTypeIntervalMilliseconds =35;
-            //string collegeAscii = File.ReadAllText("assets/text/college.txt");
-            //Terminal.WriteLine(collegeAscii);
-            //Terminal.RoboTypeIntervalMilliseconds = 40;
+            Terminal.UseRoboType = false;
+            string cornerStoreAscii = File.ReadAllText("assets/text/Corner Store.txt");
+            Terminal.WriteLine(cornerStoreAscii);
+            Terminal.UseRoboType = true;
+            Terminal.RoboTypeIntervalMilliseconds = 40;
             Terminal.WriteLine("The victim, a young man named Casey Wentz, was murdered last night at a local general store, Large Grizzly General Store.");
             Terminal.WriteLine("Reports say the kid was just buying some snacks after a long shift…");
             Terminal.WriteLine("");
@@ -398,6 +413,11 @@ Who murdered Casey…?
             Terminal.Clear();
             //----------ascii art----------------------
             //Page 3 
+            Terminal.UseRoboType = false;
+            string morgueAscii = File.ReadAllText("assets/text/Morgue.txt");
+            Terminal.WriteLine(morgueAscii);
+            Terminal.UseRoboType = true;
+            Terminal.RoboTypeIntervalMilliseconds = 40;
             Terminal.WriteLine("Casey’s body was brought to the morgue early this morning, from what the coroner has said, the death was pretty grizzley…");
             Terminal.ReadLine();
             Terminal.Clear();
@@ -405,6 +425,11 @@ Who murdered Casey…?
             //-------ascii art----------------------
 
             //Page 4
+            Terminal.UseRoboType = false;
+            Terminal.WriteLine(detectiveAscii);
+            Terminal.WriteLine();
+            Terminal.UseRoboType = true;
+            Terminal.RoboTypeIntervalMilliseconds = 40;
             Terminal.WriteLine("The attacker disappeared right after the attack, I need to find the perpetrator… and fast…");
             Terminal.WriteLine("");
             Terminal.WriteLine("The longer he’s out there the more dangerous the streets grow…");
@@ -415,6 +440,7 @@ Who murdered Casey…?
             Terminal.WriteLine("");
             Terminal.WriteLine("I gotta be smart on where to go… Can’t let this guy get away…");
             Audio.Play(clickSfx);
+            Terminal.UseRoboType = false;
             Terminal.ReadLine();
             //--------ascii art---------------
         }
@@ -531,7 +557,33 @@ Who murdered Casey…?
                 VisitOffice(); // Retry if invalid
                 return;
             }
+            /*
+             * ------------ If Casey's mother is chosen --------------- *
+            Later that day, I accused Ms. Wentz of the murder… 
+            After some further digging…
+            I was wrong…
+            Casey’s mom was released a small while later… but the damage was already done… the pain
+            of losin’ her kid, and then being accused drove her a lil insane…
+            Whoever took Casey’s life is gone now… And I’ve failed…
+            Again…
 
+            * ------------ If Jason Feltman (The young guy) is chosen --------------- *
+            Later that day, I accused Jason Feltman of the murder… 
+            After some further digging…
+            I was wrong…
+            On the day of Feltman's court hearing the kid provided some damning evidence provin’ his innocence… 
+            Made me look like a complete fool…
+            Whoever took Casey’s life is gone now… And I’ve failed…
+            Again…
+
+            * ------------ If Casey's coworker is chosen --------------- *
+            Later that day, I accused Casey’s coworker of the murder…
+            After some further digging…
+            The pieces started to add up… DNA tests, that bank teller’s testimony…
+            And through that, we got a confession…
+            Casey’s killer has been brought to justice… and his family can rest easy knowing he’s behind bars.
+            And… I finally feel like I atoned for my own kids passing…
+            */
         }
 
     }
