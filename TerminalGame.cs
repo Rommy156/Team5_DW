@@ -53,9 +53,9 @@ namespace MohawkTerminalGame
             Terminal.WordBreakCharacter = ' '; // break on spaces
             Audio.Initialize();
             // Load audio files.
-            //bgm = Audio.LoadMusic("assets/audio/bgm.wav");
-            //bgm.Looping = true;
-            //Audio.Play(bgm);
+            bgm = Audio.LoadMusic("assets/audio/bgm.mp3");
+            bgm.Looping = true;
+            Audio.Play(bgm);
             clickSfx = Audio.LoadSound("assets/audio/click.wav");
             Terminal.Clear();
 
@@ -71,10 +71,10 @@ namespace MohawkTerminalGame
         private void SetupLocations()
         {
             //-----------ascii art--------------------[Intro]
-            Terminal.RoboTypeIntervalMilliseconds = 0;
-            string introAscii = File.ReadAllText("assets/text/Detective.txt");
-            Terminal.WriteLine(introAscii);
+            Terminal.UseRoboType = false;
             Terminal.WriteLine();
+            Terminal.RoboTypeIntervalMilliseconds = 20;
+
             intro = new Location
             {
                 Name = "Detective’s Office",
@@ -84,9 +84,8 @@ namespace MohawkTerminalGame
 
             Terminal.Clear();
             //-----------ascii art--------------------[Hospital]
-            Terminal.RoboTypeIntervalMilliseconds = 0;
-            string hospitalAscii = File.ReadAllText("assets/text/Hospital.txt");
-            Terminal.WriteLine(hospitalAscii);
+            Terminal.UseRoboType = false;
+
             Terminal.WriteLine();
             hospital = new Location
             {
@@ -340,12 +339,14 @@ Fan of his job… or something more malicious…?"
             Terminal.WriteLine("Reports say the kid was just buying some snacks after a long shift…");
             Terminal.WriteLine("");
             Terminal.ReadLine();
+            Audio.Play(clickSfx);
             Terminal.Clear();
             //----------ascii art----------------------
             //Page 3 
             Terminal.WriteLine("Casey’s body was brought to the morgue early this morning, from what the coroner has said, the death was pretty grizzley…");
             Terminal.ReadLine();
             Terminal.Clear();
+            Audio.Play(clickSfx);
             //-------ascii art----------------------
 
             //Page 4
@@ -358,6 +359,7 @@ Fan of his job… or something more malicious…?"
             Terminal.WriteLine("I have 5 days to solve this case, and so many places to go…");
             Terminal.WriteLine("");
             Terminal.WriteLine("I gotta be smart on where to go… Can’t let this guy get away…");
+            Audio.Play(clickSfx);
             Terminal.ReadLine();
             //--------ascii art---------------
         }
@@ -378,6 +380,8 @@ Fan of his job… or something more malicious…?"
                     Terminal.WriteLine($"Day {daysPassed} of {maxDays}");
                     Terminal.WriteLine(location.Description);
                     Terminal.WriteLine("");
+                    Terminal.WriteLine("(Press [Enter] to continue...)");
+                    Terminal.ReadLine();
                     Terminal.WriteLine(location.Dialogue);
                     Terminal.WriteLine("");
                 }
@@ -430,8 +434,6 @@ Fan of his job… or something more malicious…?"
                     Terminal.WriteLine("Invalid choice.");
                     Terminal.ReadLine();
                 }
-
-
             }
         }
         private void VisitOffice()
@@ -712,8 +714,30 @@ Fan of his job… or something more malicious…?"
             Terminal.WriteLine("She was apparently really upset with the kid, saying some real heinous shit…");
             Terminal.WriteLine("She was mad sure… but apparently he was real frustrated from work, something about it affecting his mood… not sure if that justifies a murder…");
 
-            //Page 2.5 (Select where to go)
-            Terminal.WriteLine("Where to go?");
+            string choice = Terminal.ReadAndClearLine();
+            //set correct answer
+            string correctAnswer = "2";
+            if (choice == correctAnswer) 
+            {
+                Audio.Play(clickSfx);
+                Terminal.WriteLine("You chose wisely, the co-worker was in a tough spot and snapped under pressure, Casey's death was a tragedy but justice has been served.");
+            }
+
+            else if (choice == "1" ||choice == "3") 
+            {
+                Audio.Play(clickSfx);
+                Terminal.WriteLine("You didn’t get the murderer...The real killer is still out there.");
+            }
+            
+            else
+            {
+                Terminal.WriteLine("");
+                Terminal.WriteLine("Invalid choice. Try again.");
+                Terminal.ReadLine();
+                VisitOffice(); // Retry if invalid
+                return;
+            }
+
         }
         private void VisitOffice()
         {
