@@ -12,7 +12,7 @@ namespace MohawkTerminalGame
     public class TerminalGame
     {
         // Sound and audio variables 
-        Music bgm;
+        //Music bgm;
         Sound clickSfx;
         //Location variables
         Location currentLocation;
@@ -53,9 +53,9 @@ namespace MohawkTerminalGame
             Terminal.WordBreakCharacter = ' '; // break on spaces
             Audio.Initialize();
             // Load audio files.
-            bgm = Audio.LoadMusic("assets/audio/bgm.wav");
-            bgm.Looping = true;
-            Audio.Play(bgm);
+            //bgm = Audio.LoadMusic("assets/audio/bgm.wav");
+            //bgm.Looping = true;
+            //Audio.Play(bgm);
             clickSfx = Audio.LoadSound("assets/audio/click.wav");
             Terminal.Clear();
 
@@ -97,6 +97,7 @@ namespace MohawkTerminalGame
             };
             Terminal.Clear();
             //-----------ascii art--------------------[Morgue]
+
             Terminal.RoboTypeIntervalMilliseconds = 0;
             string morgueAscii = File.ReadAllText("assets/text/Morgue.txt");
             Terminal.WriteLine(morgueAscii);
@@ -124,11 +125,11 @@ Fan of his job… or something more malicious…?"
 
             };
             Terminal.Clear();
-            //-----------ascii art--------------------[Corner Store]
+            //-----------ascii art--------------------[General Store]
 
             Terminal.RoboTypeIntervalMilliseconds = 0;
-            string cornerStoreAscii = File.ReadAllText("assets/text/Corner Store.txt");
-            Terminal.WriteLine(cornerStoreAscii);
+            string storeAscii = File.ReadAllText("assets/text/Corner Store.txt");
+            Terminal.WriteLine(storeAscii);
             Terminal.WriteLine();
 
             //general store location narrative
@@ -140,7 +141,7 @@ Fan of his job… or something more malicious…?"
                 Dialogue = ""
             };
             Terminal.Clear();
-            //-----------ascii art--------------------[CourtHouse]
+            //-----------ascii art--------------------[Court House]
 
             Terminal.RoboTypeIntervalMilliseconds = 0;
             string courthouseAscii = File.ReadAllText("assets/text/Courthouse.txt");
@@ -175,10 +176,9 @@ Fan of his job… or something more malicious…?"
 
             Terminal.Clear();
             //-----------ascii art--------------------[School]
-
             Terminal.RoboTypeIntervalMilliseconds = 0;
-            string collegeAscii = File.ReadAllText("assets/text/College.txt");
-            Terminal.WriteLine(collegeAscii);
+            string schoolAscii = File.ReadAllText("assets/text/college.txt");
+            Terminal.WriteLine(schoolAscii);
             Terminal.WriteLine();
             //school location narrative
             school = new Location
@@ -447,6 +447,29 @@ Fan of his job… or something more malicious…?"
             Terminal.WriteLine("[2] Co-Worker");
 
         }
+
+        /*
+        
+        --------------------------- ASCII ART OF CHARACTERS ---------------------------
+
+        //-----------ascii art--------------------[Bank Teller]
+            Terminal.RoboTypeIntervalMilliseconds = 0;
+            string tellerAscii = File.ReadAllText("assets/text/Bank Teller.txt");
+            Terminal.WriteLine(tellerAscii);
+            Terminal.WriteLine();
+
+        //-----------ascii art--------------------[Bar Tender]
+            Terminal.RoboTypeIntervalMilliseconds = 0;
+            string tellerAscii = File.ReadAllText("assets/text/bartender.txt");
+            Terminal.WriteLine(tellerAscii);
+            Terminal.WriteLine();
+
+        //-----------ascii art--------------------[Concerned Woman]
+            Terminal.RoboTypeIntervalMilliseconds = 0;
+            string coronerAscii = File.ReadAllText("assets/text/ConcernedWoman.txt");
+            Terminal.WriteLine(coronerAscii);
+            Terminal.WriteLine();
+        */
         /*
         private void FirstLocation()
         {

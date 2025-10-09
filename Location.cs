@@ -15,7 +15,9 @@ namespace TerminalGameWithAudio
         public string Name { get; set; }
         public string Description { get; set; }
         public string Dialogue { get; set; }
-        
+
+        public string asciiArt { get; set; }
+
         public string VisitedDescription { get; set; }
         public Dictionary<string, Location> Paths { get; set; } = new Dictionary<string, Location>();
         public int VisitCount { get; set; } = 0;
@@ -25,24 +27,14 @@ namespace TerminalGameWithAudio
             Paths = new Dictionary<string, Location>();
             Dialogue = "";
             VisitedDescription = "";
-            
+            asciiArt = "";  
         }
         public void onVisit()
         {
             
             VisitCount++;
         }
-        public string getDescription()
-        {
-            if (VisitCount == 0)
-            {
-                return Description;
-            }
-            else
-            {
-                return VisitedDescription;
-            }
+        
         }
 
-    }
 }
