@@ -87,12 +87,12 @@ namespace MohawkTerminalGame
             Terminal.Clear();
             //-----------ascii art--------------------[Hospital]
             Terminal.RoboTypeIntervalMilliseconds = 0;
-            string hospitalAscii = File.ReadAllText("assets/text/hospital.txt");
-            Terminal.WriteLine(hospitalAscii);
+            
             Terminal.WriteLine();
             hospital = new Location
             {
                 Name = "Hospital",
+                asciiArt = File.ReadAllText("assets/text/hospital.txt"),
                 Description = "Silverstein Hospital",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Silverstein Hospital… That's where Casey Wentz was brought, it’s a shame the kid died the way he did… 
@@ -117,7 +117,6 @@ I’m not sure…
             string morgueAscii = File.ReadAllText("assets/text/morgue.txt");
             Terminal.WriteLine(morgueAscii);
             Terminal.WriteLine();
-            Terminal.ReadLine();
             //morgue location narrative
             morgue = new Location
             {
@@ -150,7 +149,16 @@ Fan of his job… or something more malicious…?"
                 Name = "General Store",
                 Description = "Large Grizzly General Store",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = ""
+                Dialogue = @"Walking into that corner store was surprisingly rougher than anyone would have suspected,despite the effort, and the cleaning it's clear that something horrible happened here…
+
+Talking with the owner he still seemed shaken by the events, but he was still able to drop some useful information… something 'bout another young man…
+
+There was this other kid, Jason Feltman, he was there the day of the murder, looked like he had fallen on hard times, startin’ to get desperate… 
+ 
+Couple that with the fact that Casey was clearly more well off than him… and desperation makes people do some stupid things…
+
+The owner said he thinks he saw him eyeing Casey’s wallet, but the old man also wasn’t wearin’ his glasses…
+"
             };
             Terminal.Clear();
             //-----------ascii art--------------------[Court House]
@@ -421,6 +429,8 @@ Who murdered Casey…?
                 {
                     visitedLocations.Add(location);
                     daysPassed++;
+
+                    Terminal.WriteLine($"{location.asciiArt}");
                     Terminal.WriteLine($"{location.Name}");
                     Terminal.WriteLine($"Day {daysPassed} of {maxDays}");
                     Terminal.WriteLine(location.Description);
