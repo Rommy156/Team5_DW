@@ -41,7 +41,7 @@ namespace MohawkTerminalGame
             Program.TerminalExecuteMode = TerminalExecuteMode.ExecuteLoop;
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
             //set title
-            Terminal.SetTitle("Detective");
+            Terminal.SetTitle("Case of the murder arond the corner");
             Terminal.SetWindowSize(1200, 800);
 
             // Hide raylib console output
