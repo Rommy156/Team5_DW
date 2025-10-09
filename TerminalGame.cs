@@ -42,7 +42,7 @@ namespace MohawkTerminalGame
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
             //set title
             Terminal.SetTitle("Case of the murder arond the corner");
-            Terminal.SetWindowSize(1200, 800);
+            Terminal.SetWindowSize(1200,800);
 
             // Hide raylib console output
             Terminal.BackgroundColor = ConsoleColor.Black;
@@ -75,11 +75,13 @@ namespace MohawkTerminalGame
             string introAscii = File.ReadAllText("assets/text/detective.txt");
             Terminal.WriteLine(introAscii);
             Terminal.WriteLine();
+
             intro = new Location
             {
                 Name = "Detective’s Office",
                 Description = "It’s another long night in Cross City. Time to get to work...",
-                Dialogue = "Where to go?\n[1] Large Grizzly General Store\n[2] City Morgue"
+                Dialogue = @"", 
+                VisitedDescription = "I’ve already gone through this part. No reason to linger.",
             };
 
             Terminal.Clear();
@@ -93,14 +95,29 @@ namespace MohawkTerminalGame
                 Name = "Hospital",
                 Description = "Silverstein Hospital",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = ""
+                Dialogue = @"Silverstein Hospital… That's where Casey Wentz was brought, it’s a shame the kid died the way he did… 
+The hospital halls are cold and detached, yet perhaps coming here wasn’t such a bad idea… 
+
+Ran into the kid’s family at the hospital… The mom, she was pretty frazzled… but she mentioned something interesting, a recent fight... 
+
+Apparently the kid had been pretty on edge… said some pretty venomous things to his own mother…
+
+The fight was apparently pretty awful, Mom tried asking him what was going on but just started screaming 'bout owing money… this led mom to start screamin’ too…
+
+Families fight for sure… sometimes it gets ugly… but is it enough to justify murder…?
+
+I’m not sure…
+
+"
             };
+
             Terminal.Clear();
             //-----------ascii art--------------------[Morgue]
             Terminal.RoboTypeIntervalMilliseconds = 0;
             string morgueAscii = File.ReadAllText("assets/text/morgue.txt");
             Terminal.WriteLine(morgueAscii);
             Terminal.WriteLine();
+            Terminal.ReadLine();
             //morgue location narrative
             morgue = new Location
             {
@@ -123,6 +140,7 @@ Fan of his job… or something more malicious…?"
 
 
             };
+
             Terminal.Clear();
             //-----------ascii art--------------------[General Store]
             
@@ -143,7 +161,15 @@ Fan of his job… or something more malicious…?"
                 Name = "Court House",
                 Description = "City Court House",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = ""
+                Dialogue = @"Walking into that corner store was surprisingly rougher than anyone would have suspected,despite the effort, and the cleaning it's clear that something horrible happened here…
+Talking with the owner he still seemed shaken by the events, but he was still able to drop some useful information… something 'bout another young man…
+
+There was this other kid, Jason Feltman, he was there the day of the murder, looked like he had fallen on hard times, startin’ to get desperate… 
+
+Couple that with the fact that Casey was clearly more well off than him… and desperation makes people do some stupid things…
+
+The owner said he thinks he saw him eyeing Casey’s wallet, but the old man also wasn’t wearin’ his glasses…
+"
             };
 
             Terminal.Clear();
@@ -155,7 +181,16 @@ Fan of his job… or something more malicious…?"
                 Name = "Bank",
                 Description = "First National Bank",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = ""
+                Dialogue = @"Walking into the bank with such reasons as I did felt awful… but I was given a tip off that Casey had drawn out a large sum of money…
+
+The bank teller was clearly concerned, maybe a slight bit nervous, I don’t blame her… but she remained helpful regardless… Mentioned something she overheard on her break…
+
+Apparently, while she was on her break, outside having a smoke, she saw Casey talking to some guy, her curiosity got the better of her and she began eavesdropping…
+
+The dude seemed to be Casey’s coworker, and an aggressive one at that… was going off 'bout the money Casey owed…
+
+Angry Coworker? And owed money… seems like a recipe for disaster… but without any corroboration… hmmm… 
+"
             };
 
             Terminal.Clear();
@@ -164,14 +199,28 @@ Fan of his job… or something more malicious…?"
             string schoolAscii = File.ReadAllText("assets/text/college.txt");
             Terminal.WriteLine(schoolAscii);
             Terminal.WriteLine();
+
             //school location narrative
             school = new Location
             {
                 Name = "School",
                 Description = "City College",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = ""
+                Dialogue = @"Figured heading to Casey’s college could have proved some use… I figured, could find a professor, maybe a classmate. Someone who knew the kid…
+
+turns out I was right..
+
+I was able to catch the kid’s girlfriend, or… I suppose, his former girlfriend… she was just leavin’ class.
+
+Talkin’ with his girlfriend opened my eyes on somethings… That kid was really hatin’ work, was talking 'bout quitting…
+
+Apparently his one coworker wasn’t happy 'bout that, they were pretty swamped at the bar as is…
+
+Not sure if that is worth killin’ a person over though…
+"
+
             };
+            
 
             Terminal.Clear();
             //-----------ascii art--------------------[Bar]
@@ -182,7 +231,16 @@ Fan of his job… or something more malicious…?"
                 Name = "Seedy Bar",
                 Description = "Seedy Bar",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = ""
+                Dialogue = @" Coheed’s, a dingy lil bar… this is where Casey worked… Walkin’ in things instantly felt off, people like me aren’t typically welcomed here…
+
+Regardless, I got a job to do… And the kid’s old coworkers could be a great place for info.
+
+Askin’ the bartender ‘bout Casey seemed to sour his face. I asked him more ‘bout the kid and he seemed to not have much good things to say ‘bout him…
+
+He began goin’ on a bit of a tangent, but stopped himself, likely after realizin’ they were talkin’ to a cop…
+
+Regardless… He said a lot of things that raised some suspicions… 
+"
             };
 
             Terminal.Clear();
@@ -194,7 +252,20 @@ Fan of his job… or something more malicious…?"
                 Name = "Rich Manor",
                 Description = "Rich Manor",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = ""
+                Dialogue = @"My intel pointed me to a manor in the more well off part of town. Upon arriving things seemed normal, no issues… but I needed to talk to the owner, just to be sure…
+
+Got talking to the owner of the house though, after like 20 minutes of waitin’
+
+After talkin’ to the man I learned that Casey’s mom worked as a cleaner at his manor
+
+He seemed pretty forth comin’ all things considered… Talked a lot about the things Casey’s mom would talk about.
+
+A lot of complainin’ about her son… especially recently, was hearin’ a lot of things about Casey’s recent erratic behaviour…
+
+She was apparently really upset with the kid, saying some real heinous shit…
+
+She was mad sure… but apparently he was real frustrated from work, something about it affecting his mood… not sure if that justifies a murder…
+"
             };
 
             Terminal.Clear();
@@ -207,8 +278,14 @@ Fan of his job… or something more malicious…?"
                 Name = "Detective Office",
                 Description = "Detective Office",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = ""
-            };
+                Dialogue = @"Back at my office… There’s no more time…
+ 
+I gotta make a choice…
+
+Who murdered Casey…?
+"
+
+            }; 
             //connect locations
             //intro paths
             intro.Paths.Add("1", generalStore);
@@ -333,7 +410,7 @@ Fan of his job… or something more malicious…?"
         }
         private void VisitLocation(Location location)
         {
-            while (true)
+            
             {
                 Terminal.Clear();
                 location.onVisit();
@@ -370,7 +447,7 @@ Fan of his job… or something more malicious…?"
             {
                 VisitLocation(currentLocation);
                 //check for game over
-                if (daysPassed > maxDays)
+                if (daysPassed >= maxDays)
                 {
                     gameOver = true;
                     VisitOffice();

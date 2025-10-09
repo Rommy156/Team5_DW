@@ -32,17 +32,7 @@ namespace TerminalGameWithAudio
             
             VisitCount++;
         }
-        public string getDescription()
-        {
-            if (VisitCount == 0)
-            {
-                return Description;
-            }
-            else
-            {
-                return VisitedDescription;
-            }
+        
         }
 
-    }
 }
