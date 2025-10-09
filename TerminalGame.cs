@@ -522,7 +522,6 @@ Who murdered Casey…?
                 Audio.Play(clickSfx);
                 Terminal.WriteLine("You didn’t get the murderer...The real killer is still out there.");
             }
-            
             else
             {
                 Terminal.WriteLine("");
