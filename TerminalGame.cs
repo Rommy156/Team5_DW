@@ -172,14 +172,19 @@ The owner said he thinks he saw him eyeing Casey’s wallet, but the old man als
                 asciiArt = File.ReadAllText("assets/text/Courthouse.txt"),
                 Description = "City Court House",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
-                Dialogue = @"Walking into that corner store was surprisingly rougher than anyone would have suspected,despite the effort, and the cleaning it's clear that something horrible happened here…
-Talking with the owner he still seemed shaken by the events, but he was still able to drop some useful information… something 'bout another young man…
+                Dialogue = @"Going to the courthouse, it initially felt like a waste of time. But my leads pointed me here, and  they haven’t steered me wrong before… Perhaps there really is something worthwhile here…
 
-There was this other kid, Jason Feltman, he was there the day of the murder, looked like he had fallen on hard times, startin’ to get desperate… 
+It was only after I reached the halls of the courthouse… did I really realize why I was sent here.
 
-Couple that with the fact that Casey was clearly more well off than him… and desperation makes people do some stupid things…
+Turns out that this other kid, Jason Feltman, who had some bad blood with Casey was there. I managed to snag him for an interview, after some pesterin’
 
-The owner said he thinks he saw him eyeing Casey’s wallet, but the old man also wasn’t wearin’ his glasses…
+After I got him talkin’ though, learned he was there payin’ off a ticket…
+
+He also got to tellin’ me about the arguments he and Casey would get into. He mentioned that the two weren’t always like this, but Casey was getting erratic recently, and it was driving everyone mad… 
+
+The kid seems annoyed with Casey, sure. But to resort to murder..?
+
+Seems extreme…
 "
             };
 
@@ -369,7 +374,7 @@ Who murdered Casey…?
         //               Code must finish within the alloted time frame for this to work well.
         public void Execute()
         {
-           
+            
             TitleScreen();
             StartGame();
         }
@@ -588,17 +593,32 @@ Who murdered Casey…?
             string correctAnswer = "2";
             if (choice == correctAnswer) 
             {
+                Terminal.UseRoboType = false;
+                string coWorker = File.ReadAllText("assets/text/man-behind-bars.txt");
+                Terminal.WriteLine(coWorker);
+                Terminal.UseRoboType = true;
+                Terminal.RoboTypeIntervalMilliseconds = 40;
                 Audio.Play(clickSfx);
                 Terminal.WriteLine("\r\nLater that day, I accused Casey’s coworker of the murder…\r\n\r\nAfter some further digging…\r\n\r\nThe pieces started to add up… DNA tests, that bank teller’s testimony…\r\n\r\nAnd through that, we got a confession…\r\n\r\nCasey’s killer has been brought to justice… and his family can rest easy knowing he’s behind bars.\r\n\r\nAnd… I finally feel like I atoned for my own kids passing…\r\n");
             }
 
             else if (choice == "1" ) 
             {
+                Terminal.UseRoboType = false;
+                string caseyMom = File.ReadAllText("assets/text/Handcuffs.txt");
+                Terminal.WriteLine(caseyMom);
+                Terminal.UseRoboType = true;
+                Terminal.RoboTypeIntervalMilliseconds = 40;
+                Audio.Play(clickSfx);
                 Audio.Play(clickSfx);
                 Terminal.WriteLine("\r\nLater that day, I accused Ms. Wentz of the murder… \r\n \r\nAfter some further digging…\r\n\r\nI was wrong…\r\n\r\nCasey’s mom was released a small while later… but the damage was already done… the pain\r\n\r\nof losin’ her kid, and then being accused drove her a lil insane…\r\n\r\nWhoever took Casey’s life is gone now… And I’ve failed…\r\n\r\nAgain…\r\n");
             }
             else if ( choice == "3")
             {
+                Terminal.UseRoboType = false;
+                string jason = File.ReadAllText("assets/text/Young-man.txt");
+                Terminal.WriteLine(jason);
+                Terminal.UseRoboType = true;
                 Audio.Play(clickSfx);
                 Terminal.WriteLine("\r\nLater that day, I accused Jason Feltman of the murder… \r\n\r\nAfter some further digging…\r\nI was wrong…\r\n\r\nOn the day of Feltman's court hearing the kid provided some damning evidence provin’ his innocence… \r\n\r\nMade me look like a complete fool…\r\n\r\nWhoever took Casey’s life is gone now… And I’ve failed…\r\n\r\nAgain…\r\n");
             }
