@@ -46,7 +46,6 @@ namespace MohawkTerminalGame
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
             //set title
             Terminal.SetTitle("Case of the murder around the corner");
-            Terminal.SetWindowSize(1200, 800);
 
             // Hide raylib console output
             Terminal.BackgroundColor = ConsoleColor.Black;
@@ -80,6 +79,7 @@ namespace MohawkTerminalGame
             Terminal.WriteLine();
             Terminal.RoboTypeIntervalMilliseconds = 20;
 
+
             intro = new Location
             {
                 Name = "Detective’s Office",
@@ -87,7 +87,6 @@ namespace MohawkTerminalGame
                 Description = "It’s another long night in Cross City. Time to get to work...",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
             };
-
             Terminal.Clear();
             //-----------ascii art--------------------[Hospital]
             Terminal.UseRoboType = false;
@@ -285,8 +284,6 @@ She was mad sure… but apparently he was real frustrated from work, something a
             };
 
             Terminal.Clear();
-            //-----------ascii art--------------------[Detective Office]
-
             Terminal.WriteLine();
             //office location narrative
             office = new Location
@@ -303,6 +300,7 @@ Who murdered Casey…?
 "
 
             };
+            Terminal.WriteLine($"Day {daysPassed} of {maxDays}");
             //connect locations
             //intro paths
             intro.Paths.Add("1", generalStore);
@@ -371,6 +369,7 @@ Who murdered Casey…?
         //               Code must finish within the alloted time frame for this to work well.
         public void Execute()
         {
+           
             TitleScreen();
             StartGame();
         }
@@ -390,12 +389,17 @@ Who murdered Casey…?
         private void TitleScreen()
         {
 
-            ;
+            
             Terminal.Clear();
+            Terminal.WriteLine("");
+            Terminal.WriteLine("Team 5");
+            Terminal.WriteLine("");
             Terminal.UseRoboType = true;
             string titleAscii = File.ReadAllText("assets/text/Title-screen.txt");
             Terminal.WriteLine(titleAscii);
-            Terminal.WriteLine();
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
+            Terminal.WriteLine("");
             Terminal.UseRoboType = false;
             Terminal.RoboTypeIntervalMilliseconds = 1;
             Terminal.WriteLine("Press [Enter] to start");
@@ -482,10 +486,11 @@ Who murdered Casey…?
             Terminal.WriteLine("I have 5 days to solve this case, and so many places to go…");
             Terminal.WriteLine("");
             Terminal.WriteLine("I gotta be smart on where to go… Can’t let this guy get away…");
-            Audio.Play(clickSfx);
+            
             Terminal.UseRoboType = false;
             Terminal.ReadLine();
-            //--------ascii art---------------
+            Audio.Play(clickSfx);
+            Terminal.Clear();
         }
         private void VisitLocation(Location location)
         {
