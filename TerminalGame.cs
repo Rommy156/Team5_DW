@@ -81,9 +81,8 @@ namespace MohawkTerminalGame
             intro = new Location
             {
                 Name = "Detective’s Office",
-                asciiArt = File.ReadAllText("assets/text/Detective at Desk.txt"),
+                asciiArt = File.ReadAllText("assets/text/Detective-at-desk.txt"),
                 Description = "It’s another long night in Cross City. Time to get to work...",
-                Dialogue = @"",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
             };
 
@@ -116,9 +115,6 @@ I’m not sure…
 
             Terminal.Clear();
             //-----------ascii art--------------------[Morgue]
-            Terminal.RoboTypeIntervalMilliseconds = 0;
-            string morgueAscii = File.ReadAllText("assets/text/morgue.txt");
-            Terminal.WriteLine(morgueAscii);
             Terminal.WriteLine();
             //morgue location narrative
             morgue = new Location
@@ -142,7 +138,7 @@ He had a browser open up on his laptop, something 'bout psychiatric help for vio
 Fan of his job… or something more malicious…?"
 
 
-            };
+            }; Terminal.RoboTypeIntervalMilliseconds = 20;
 
             Terminal.Clear();
             //-----------ascii art--------------------[General Store]
@@ -151,7 +147,7 @@ Fan of his job… or something more malicious…?"
             generalStore = new Location
             {
                 Name = "General Store",
-                asciiArt = File.ReadAllText("assets/text/Corner Store.txt"),
+                asciiArt = File.ReadAllText("assets/text/Corner-Store.txt"),
                 Description = "Large Grizzly General Store",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Walking into that corner store was surprisingly rougher than anyone would have suspected,despite the effort, and the cleaning it's clear that something horrible happened here…
@@ -167,7 +163,7 @@ The owner said he thinks he saw him eyeing Casey’s wallet, but the old man als
             };
             Terminal.Clear();
             //-----------ascii art--------------------[Court House]
-
+            Terminal.RoboTypeIntervalMilliseconds = 20;
             //court house location narrative
             courtHouse = new Location
             {
@@ -188,7 +184,7 @@ The owner said he thinks he saw him eyeing Casey’s wallet, but the old man als
 
             Terminal.Clear();
             //-----------ascii art--------------------[Bank]
-            Terminal.RoboTypeIntervalMilliseconds = 0;
+            Terminal.RoboTypeIntervalMilliseconds = 20;
             //bank location narrative
             bank = new Location
             {
@@ -294,7 +290,7 @@ She was mad sure… but apparently he was real frustrated from work, something a
             office = new Location
             {
                 Name = "Detective Office",
-                asciiArt = File.ReadAllText("assets/text/Detective at Desk.txt"),
+                asciiArt = File.ReadAllText("assets/text/Detective-at-Desk.txt"),
                 Description = "Detective Office",
                 VisitedDescription = "I’ve already gone through this part. No reason to linger.",
                 Dialogue = @"Back at my office… There’s no more time…
@@ -343,8 +339,6 @@ Who murdered Casey…?
             morgue.Paths.Add("3", manor);
             morgue.Paths.Add("4", bank);
             morgue.Paths.Add("5", school);
-            //hospital paths
-            hospital.Paths.Add("1", generalStore);
             hospital.Paths.Add("2", morgue);
             hospital.Paths.Add("3", school);
             hospital.Paths.Add("4", courtHouse);
@@ -354,7 +348,9 @@ Who murdered Casey…?
             courtHouse.Paths.Add("2", hospital);
             courtHouse.Paths.Add("3", school);
             courtHouse.Paths.Add("4", bar);
-            courtHouse.Paths.Add("5", bank);
+            courtHouse.Paths.Add("5",
+            //hospital paths
+            hospital.Paths.Add("1", generalStore); bank);
             //bar paths
             bar.Paths.Add("1", manor);
             bar.Paths.Add("2", hospital);
@@ -401,7 +397,7 @@ Who murdered Casey…?
 
             //Page 2
             Terminal.UseRoboType = false;
-            string cornerStoreAscii = File.ReadAllText("assets/text/Corner Store.txt");
+            string cornerStoreAscii = File.ReadAllText("assets/text/Corner-Store.txt");
             Terminal.WriteLine(cornerStoreAscii);
             Terminal.UseRoboType = true;
             Terminal.RoboTypeIntervalMilliseconds = 40;
@@ -416,9 +412,10 @@ Who murdered Casey…?
             Terminal.UseRoboType = false;
             string morgueAscii = File.ReadAllText("assets/text/Morgue.txt");
             Terminal.WriteLine(morgueAscii);
+            
+            Terminal.WriteLine("Casey’s body was brought to the morgue early this morning, from what the coroner has said, the death was pretty grizzley…");
             Terminal.UseRoboType = true;
             Terminal.RoboTypeIntervalMilliseconds = 40;
-            Terminal.WriteLine("Casey’s body was brought to the morgue early this morning, from what the coroner has said, the death was pretty grizzley…");
             Terminal.ReadLine();
             Terminal.Clear();
             Audio.Play(clickSfx);
@@ -540,15 +537,19 @@ Who murdered Casey…?
             if (choice == correctAnswer) 
             {
                 Audio.Play(clickSfx);
-                Terminal.WriteLine("You chose wisely, the co-worker was in a tough spot and snapped under pressure, Casey's death was a tragedy but justice has been served.");
+                Terminal.WriteLine("\r\nLater that day, I accused Casey’s coworker of the murder…\r\n\r\nAfter some further digging…\r\n\r\nThe pieces started to add up… DNA tests, that bank teller’s testimony…\r\n\r\nAnd through that, we got a confession…\r\n\r\nCasey’s killer has been brought to justice… and his family can rest easy knowing he’s behind bars.\r\n\r\nAnd… I finally feel like I atoned for my own kids passing…\r\n");
             }
 
-            else if (choice == "1" ||choice == "3") 
+            else if (choice == "1" ) 
             {
                 Audio.Play(clickSfx);
-                Terminal.WriteLine("You didn’t get the murderer...The real killer is still out there.");
+                Terminal.WriteLine("\r\nLater that day, I accused Ms. Wentz of the murder… \r\n \r\nAfter some further digging…\r\n\r\nI was wrong…\r\n\r\nCasey’s mom was released a small while later… but the damage was already done… the pain\r\n\r\nof losin’ her kid, and then being accused drove her a lil insane…\r\n\r\nWhoever took Casey’s life is gone now… And I’ve failed…\r\n\r\nAgain…\r\n");
             }
-            
+            else if ( choice == "3")
+            {
+                Audio.Play(clickSfx);
+                Terminal.WriteLine("\r\nLater that day, I accused Jason Feltman of the murder… \r\n\r\nAfter some further digging…\r\nI was wrong…\r\n\r\nOn the day of Feltman's court hearing the kid provided some damning evidence provin’ his innocence… \r\n\r\nMade me look like a complete fool…\r\n\r\nWhoever took Casey’s life is gone now… And I’ve failed…\r\n\r\nAgain…\r\n");
+            }
             else
             {
                 Terminal.WriteLine("");
@@ -557,33 +558,6 @@ Who murdered Casey…?
                 VisitOffice(); // Retry if invalid
                 return;
             }
-            /*
-             * ------------ If Casey's mother is chosen --------------- *
-            Later that day, I accused Ms. Wentz of the murder… 
-            After some further digging…
-            I was wrong…
-            Casey’s mom was released a small while later… but the damage was already done… the pain
-            of losin’ her kid, and then being accused drove her a lil insane…
-            Whoever took Casey’s life is gone now… And I’ve failed…
-            Again…
-
-            * ------------ If Jason Feltman (The young guy) is chosen --------------- *
-            Later that day, I accused Jason Feltman of the murder… 
-            After some further digging…
-            I was wrong…
-            On the day of Feltman's court hearing the kid provided some damning evidence provin’ his innocence… 
-            Made me look like a complete fool…
-            Whoever took Casey’s life is gone now… And I’ve failed…
-            Again…
-
-            * ------------ If Casey's coworker is chosen --------------- *
-            Later that day, I accused Casey’s coworker of the murder…
-            After some further digging…
-            The pieces started to add up… DNA tests, that bank teller’s testimony…
-            And through that, we got a confession…
-            Casey’s killer has been brought to justice… and his family can rest easy knowing he’s behind bars.
-            And… I finally feel like I atoned for my own kids passing…
-            */
         }
 
     }

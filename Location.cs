@@ -25,6 +25,7 @@ namespace TerminalGameWithAudio
         public Location()
         {
             Paths = new Dictionary<string, Location>();
+            Terminal.RoboTypeIntervalMilliseconds = 10;
             Dialogue = "";
             VisitedDescription = "";
             asciiArt = "";  
