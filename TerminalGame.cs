@@ -339,18 +339,20 @@ Who murdered Casey…?
             morgue.Paths.Add("3", manor);
             morgue.Paths.Add("4", bank);
             morgue.Paths.Add("5", school);
-            hospital.Paths.Add("2", morgue);
-            hospital.Paths.Add("3", school);
-            hospital.Paths.Add("4", courtHouse);
+            
 
             //court house paths
             courtHouse.Paths.Add("1", manor);
             courtHouse.Paths.Add("2", hospital);
             courtHouse.Paths.Add("3", school);
             courtHouse.Paths.Add("4", bar);
-            courtHouse.Paths.Add("5",
+            courtHouse.Paths.Add("5",bank);
             //hospital paths
-            hospital.Paths.Add("1", generalStore); bank);
+            hospital.Paths.Add("1", generalStore);
+            hospital.Paths.Add("2", morgue);
+            hospital.Paths.Add("3", school);
+            hospital.Paths.Add("4", courtHouse);
+            hospital.Paths.Add("5", bank);
             //bar paths
             bar.Paths.Add("1", manor);
             bar.Paths.Add("2", hospital);
