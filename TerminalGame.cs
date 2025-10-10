@@ -16,6 +16,7 @@ namespace MohawkTerminalGame
     {
         // Sound and audio variables 
         Music bgm;
+        Music bgm2;
         Sound clickSfx;
         //Location variables
         Location currentLocation;
@@ -44,7 +45,7 @@ namespace MohawkTerminalGame
             Program.TerminalExecuteMode = TerminalExecuteMode.ExecuteLoop;
             Program.TerminalInputMode = TerminalInputMode.KeyboardReadAndReadLine;
             //set title
-            Terminal.SetTitle("Case of the murder arond the corner");
+            Terminal.SetTitle("Case of the murder around the corner");
             Terminal.SetWindowSize(1200, 800);
 
             // Hide raylib console output
@@ -57,6 +58,7 @@ namespace MohawkTerminalGame
             Audio.Initialize();
             // Load audio files.
             bgm = Audio.LoadMusic("assets/audio/bgm.mp3");
+            bgm2 = Audio.LoadMusic("assets/audio/bgm02.mp3");
             bgm.Looping = true;
             Audio.Play(bgm);
             clickSfx = Audio.LoadSound("assets/audio/click.wav");
@@ -369,13 +371,55 @@ Who murdered Casey…?
         //               Code must finish within the alloted time frame for this to work well.
         public void Execute()
         {
-            if (!IntroPlayed)
+            TitleScreen();
+            StartGame();
+        }
+        private void StartGame()
+        {
+            Terminal.Clear();
             {
-                PlayIntro();
-                IntroPlayed = true;
-            }
+                if (!IntroPlayed)
+                {
+                    PlayIntro();
+                    IntroPlayed = true;
+                }
 
-            StartExploration(currentLocation);
+                StartExploration(currentLocation);
+            }
+        }
+        private void TitleScreen()
+        {
+
+            ;
+            Terminal.Clear();
+            Terminal.UseRoboType = true;
+            string titleAscii = File.ReadAllText("assets/text/Title-screen.txt");
+            Terminal.WriteLine(titleAscii);
+            Terminal.WriteLine();
+            Terminal.UseRoboType = false;
+            Terminal.RoboTypeIntervalMilliseconds = 1;
+            Terminal.WriteLine("Press [Enter] to start");
+            Terminal.ReadLine();
+            Audio.Stop(bgm);
+            Audio.Play(bgm2);
+            Audio.Play(clickSfx);
+            
+            Terminal.Clear();
+        }
+        private void ShowCredits()
+        {
+            Terminal.Clear();
+            Terminal.UseRoboType = false;
+            string creditsAscii = File.ReadAllText("assets/text/End-Credits.txt");
+            Terminal.WriteLine(creditsAscii);
+            Terminal.WriteLine();
+            Terminal.UseRoboType = true;
+            Terminal.RoboTypeIntervalMilliseconds = 1;
+            Terminal.WriteLine("Programmer: Allen Adepoju \r\n\r\nNarrative Design:Jasmine Van Bussel \r\n\r\nAsst. Programmer: Brock Hutter\r\n\r\nArt: Jasmine Van Bussel , Jack Yeilding \r\n\r\nSound Designer(s): Allen Adepoju, Jasmine Van Bussel \r\n\r\nMusic:The Film Noir Music of the 1950s - Secrets Follow (Royalty-free Music)");
+            Terminal.WriteLine("Press [Enter] to exit");
+            Terminal.ReadLine();
+            Audio.Play(clickSfx);
+            Terminal.Clear();
         }
         private void PlayIntro()
 
@@ -494,6 +538,7 @@ Who murdered Casey…?
                     VisitOffice();
                     Terminal.WriteLine("Game Over");
                     Terminal.ReadLine();
+                    ShowCredits();
                     Environment.Exit(0);
                     return;
                 }
