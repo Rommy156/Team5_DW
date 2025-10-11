@@ -362,6 +362,7 @@ Who murdered Casey…?
             bar.Paths.Add("1", manor);
             bar.Paths.Add("2", hospital);
             bar.Paths.Add("3", school);
+            bar.Paths.Add("4", courtHouse);
 
         }
 
@@ -374,7 +375,6 @@ Who murdered Casey…?
         //               Code must finish within the alloted time frame for this to work well.
         public void Execute()
         {
-            
             TitleScreen();
             StartGame();
         }
@@ -407,7 +407,7 @@ Who murdered Casey…?
             Terminal.WriteLine("");
             Terminal.UseRoboType = false;
             Terminal.RoboTypeIntervalMilliseconds = 1;
-            Terminal.WriteLine("Press [Enter] to start");
+            Terminal.WriteLine("Press [Enter] to start game");
             Terminal.ReadLine();
             Audio.Stop(bgm);
             Audio.Play(bgm2);
@@ -424,7 +424,8 @@ Who murdered Casey…?
             Terminal.WriteLine();
             Terminal.UseRoboType = true;
             Terminal.RoboTypeIntervalMilliseconds = 1;
-            Terminal.WriteLine("Programmer: Allen Adepoju \r\n\r\nNarrative Design:Jasmine Van Bussel \r\n\r\nAsst. Programmer: Brock Hutter\r\n\r\nArt: Jasmine Van Bussel , Jack Yeilding \r\n\r\nSound Designer(s): Allen Adepoju, Jasmine Van Bussel \r\n\r\nMusic:The Film Noir Music of the 1950s - Secrets Follow (Royalty-free Music)");
+            Terminal.WriteLine("Programmer: Allen Adepoju \r\n\r\nNarrative Design:Jasmine Van Bussel \r\n\r\nAsst. Programmer: Brock Hutter\r\n\r\nArt: Cody Bonnett, Jasmine Van Bussel , Jack Yeilding \r\n\r\nSound Designer(s): Allen Adepoju, Jasmine Van Bussel \r\n\r\nMusic:The Film Noir Music of the 1950s - Secrets Follow (Royalty-free Music) \r\n\r\nThe Film Noir Music of the 1950s - The Calm (Royalty-free Music)");
+            Terminal.WriteLine("");
             Terminal.WriteLine("Press [Enter] to exit");
             Terminal.ReadLine();
             Audio.Play(clickSfx);
@@ -589,7 +590,7 @@ Who murdered Casey…?
             Terminal.WriteLine("[3] Jason Feltman ");
 
             string choice = Terminal.ReadAndClearLine();
-            //set correct answer
+            //set correct answer 
             string correctAnswer = "2";
             if (choice == correctAnswer) 
             {
@@ -600,6 +601,8 @@ Who murdered Casey…?
                 Terminal.RoboTypeIntervalMilliseconds = 40;
                 Audio.Play(clickSfx);
                 Terminal.WriteLine("\r\nLater that day, I accused Casey’s coworker of the murder…\r\n\r\nAfter some further digging…\r\n\r\nThe pieces started to add up… DNA tests, that bank teller’s testimony…\r\n\r\nAnd through that, we got a confession…\r\n\r\nCasey’s killer has been brought to justice… and his family can rest easy knowing he’s behind bars.\r\n\r\nAnd… I finally feel like I atoned for my own kids passing…\r\n");
+                Terminal.WriteLine("(Press [Enter] to load credits...)");
+                Terminal.ReadLine();
             }
 
             else if (choice == "1" ) 
@@ -612,6 +615,8 @@ Who murdered Casey…?
                 Audio.Play(clickSfx);
                 Audio.Play(clickSfx);
                 Terminal.WriteLine("\r\nLater that day, I accused Ms. Wentz of the murder… \r\n \r\nAfter some further digging…\r\n\r\nI was wrong…\r\n\r\nCasey’s mom was released a small while later… but the damage was already done… the pain\r\n\r\nof losin’ her kid, and then being accused drove her a lil insane…\r\n\r\nWhoever took Casey’s life is gone now… And I’ve failed…\r\n\r\nAgain…\r\n");
+                Terminal.WriteLine("(Press [Enter] to load credits...)");
+                Terminal.ReadLine();
             }
             else if ( choice == "3")
             {
@@ -621,6 +626,8 @@ Who murdered Casey…?
                 Terminal.UseRoboType = true;
                 Audio.Play(clickSfx);
                 Terminal.WriteLine("\r\nLater that day, I accused Jason Feltman of the murder… \r\n\r\nAfter some further digging…\r\nI was wrong…\r\n\r\nOn the day of Feltman's court hearing the kid provided some damning evidence provin’ his innocence… \r\n\r\nMade me look like a complete fool…\r\n\r\nWhoever took Casey’s life is gone now… And I’ve failed…\r\n\r\nAgain…\r\n");
+                Terminal.WriteLine("(Press [Enter] to load credits...)");
+                Terminal.ReadLine();
             }
             else
             {
